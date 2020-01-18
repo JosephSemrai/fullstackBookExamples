@@ -1,0 +1,8 @@
+post http://localhost:3001/api/notes
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imphc3N1ZiIsImlkIjoiNWRmMTUxMDE5Zjg2Nzk1MDNhM2RlMTgzIiwiaWF0IjoxNTc2NDcyNTQ3fQ.b17lRenxqf7xSKLGqmsCYbCfP7vflDTJEKC6VupE02s
+
+{
+    "content": "This note was sent by an authorized user",
+    "flagged": false
+}

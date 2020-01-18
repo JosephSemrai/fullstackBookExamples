@@ -1,0 +1,8 @@
+post http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+	"content": "This was sent using REST Client and sends the user ID!",
+	"flagged": true,
+	"userId": "5df151019f8679503a3de183"
+}

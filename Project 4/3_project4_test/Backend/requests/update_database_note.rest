@@ -1,0 +1,7 @@
+put http://localhost:3001/api/notes/5dcb86f0e84c9f54b0e9f7b5
+Content-Type: application/json
+
+{
+	"content": "This is our second note in our database!",
+	"flagged": true
+}

@@ -1,0 +1,64 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "First Note",
+      "date": "2019-09-30T17:32:41.199Z",
+      "flagged": true
+    },
+    {
+      "id": 2,
+      "content": "Second Note!",
+      "date": "2019-08-30T12:13:24.091Z",
+      "flagged": false
+    },
+    {
+      "id": 3,
+      "content": "This is our third note.",
+      "date": "2019-08-30T12:20:14.998Z",
+      "flagged": true
+    },
+    {
+      "content": "This note will be added via a HTTP POST request!",
+      "date": "2019-11-02T21:50:03.184Z",
+      "flagged": true,
+      "id": 4
+    },
+    {
+      "content": "Enter a new note here...",
+      "date": "2019-11-02T22:21:58.166Z",
+      "flagged": false,
+      "id": 5
+    },
+    {
+      "content": "Enter a new note here...",
+      "date": "2019-11-02T22:22:15.338Z",
+      "flagged": true,
+      "id": 6
+    },
+    {
+      "content": "Enter a new note here...",
+      "date": "2019-11-02T22:30:43.025Z",
+      "flagged": true,
+      "id": 7
+    },
+    {
+      "content": "Enter a new note here...",
+      "date": "2019-11-02T22:30:43.696Z",
+      "flagged": false,
+      "id": 8
+    },
+    {
+      "content": "dsfsfsdf",
+      "date": "2019-11-02T22:30:45.791Z",
+      "flagged": false,
+      "id": 9
+    },
+    {
+      "content": "fasfasfsadfsfsf",
+      "date": "2019-11-02T22:30:48.374Z",
+      "flagged": false,
+      "id": 10
+    }
+  ]
+}
