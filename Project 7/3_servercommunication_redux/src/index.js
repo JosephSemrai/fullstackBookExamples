@@ -4,8 +4,10 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import App from './App'
 
-import noteReducer from './reducers/noteReducer'
+import noteReducer, { initNotes } from './reducers/noteReducer'
 import filterReducer from './reducers/filterReducer'
+
+import noteService from './services/noteService'
 
 const reducer = combineReducers({
   notes: noteReducer,
@@ -13,6 +15,11 @@ const reducer = combineReducers({
 })
 
 const store = createStore(reducer)
+
+noteService.getAll().then(notes =>
+  store.dispatch(initNotes(notes))
+);
+
 
 ReactDOM.render(
   <Provider store={store}> 

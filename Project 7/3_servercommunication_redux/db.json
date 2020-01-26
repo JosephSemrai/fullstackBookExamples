@@ -1,12 +1,12 @@
 {
     "notes": [
         {
-        "content": "This was served by json-server",
+        "textContent": "This was served by json-server",
         "flagged": false,
         "id": 1
         },
         {
-        "content": "We're keeping track of all of these notes in the Redux Store",
+        "textContent": "We're keeping track of all of these notes in the Redux Store",
         "flagged": true,
         "id": 2
         }

@@ -1,5 +1,7 @@
 const noteReducer = (state = [], action) => {
   switch (action.type) {
+  case 'INIT_NOTES':
+    return action.data
   case 'NEW_NOTE':
     return [...state, action.data]
   case 'TOGGLE_FLAGGED': {
@@ -33,6 +35,13 @@ export const toggleFlaggedOf = (id) => {
   return {
     type: 'TOGGLE_FLAGGED',
     data: { id }
+  }
+}
+
+export const initNotes = (notes) => {
+  return {
+    type: 'INIT_NOTES',
+    data: notes
   }
 }
 export default noteReducer

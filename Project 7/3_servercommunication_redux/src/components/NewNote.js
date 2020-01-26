@@ -12,7 +12,7 @@ const NewNote = ({ createNewNote }) => {
   }
   
   return (
-  	<form onSubmit={addNote}>
+    <form onSubmit={addNote}>
       <input name="noteField"/> 
       <button type="submit">Create Note</button>
     </form>
