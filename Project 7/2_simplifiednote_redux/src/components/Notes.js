@@ -5,20 +5,12 @@ import Note from './Note'
 
 const Notes = ({ 
   notes,
-  filter,
   toggleFlagged 
 }) => {
 
-  const noteList = () => {
-    if (filter === 'FLAGGED') {
-      return notes.filter(n => n.flagged)
-    }
-    return notes
-  }
-
   return (
     <ul>
-      {noteList().map(note =>
+      {notes.map(note =>
         <Note
           key={note.id}
           note={note}
@@ -29,10 +21,17 @@ const Notes = ({
   )
 }
 
+
+const noteList = ({ notes, filter }) => {
+  if (filter === 'FLAGGED') {
+    return notes.filter(n => n.flagged)
+  }
+  return notes
+}
+
 const mapStateToProps = (state) => {
   return {
-    notes: state.notes,
-    filter: state.filter
+    notes: noteList(state)
   }
 }
 
