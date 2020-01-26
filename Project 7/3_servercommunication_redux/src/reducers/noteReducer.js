@@ -2,7 +2,7 @@ const noteReducer = (state = [], action) => {
   switch (action.type) {
   case 'NEW_NOTE':
     return [...state, action.data]
-  case 'TOGGLE_FLAGGED':
+  case 'TOGGLE_FLAGGED': {
     const noteId = action.data.id
     const originalNote = state.find(n => n.id === noteId)
     const updatedNote = {
@@ -10,6 +10,7 @@ const noteReducer = (state = [], action) => {
       flagged: !originalNote.flagged
     }
     return state.map(n => n.id === noteId ? updatedNote : n)
+  }
   default:
     return state
   }
