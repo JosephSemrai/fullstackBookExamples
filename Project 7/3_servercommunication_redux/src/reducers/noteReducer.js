@@ -1,3 +1,5 @@
+import noteService from '../services/noteService'
+
 const noteReducer = (state = [], action) => {
   switch (action.type) {
   case 'INIT_NOTES':
@@ -18,30 +20,30 @@ const noteReducer = (state = [], action) => {
   }
 }
 
-const generateId = () => Math.round(Number((Math.random() * 10000)))
-
-export const createNote = (textContent) => {
-  return {
-    type: 'NEW_NOTE',
-    data: {
-      textContent,
-      flagged: false,
-      id: generateId()
-    }
+export const createNote = textContent => {
+  return async dispatch => {
+    const newNote = await noteService.create(textContent)
+    dispatch({
+      type: 'NEW_NOTE',
+      data: newNote
+    })
   }
 }
 
-export const toggleFlaggedOf = (id) => {
+export const toggleFlaggedOf = id => {
   return {
     type: 'TOGGLE_FLAGGED',
     data: { id }
   }
 }
 
-export const initNotes = (notes) => {
-  return {
-    type: 'INIT_NOTES',
-    data: notes
+export const initNotes = () => {
+  return async dispatch => {
+    const notes = await noteService.getAll()
+    dispatch({
+      type: 'INIT_NOTES',
+      data: notes
+    })
   }
 }
 export default noteReducer

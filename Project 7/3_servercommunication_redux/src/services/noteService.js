@@ -7,4 +7,22 @@ const getAll = async () => {
   return res.data
 }
 
-export default { getAll }
+const create = async textContent => {
+  const note = { 
+    textContent,
+    flagged: false 
+  }
+  const res = await axios.post(baseUrl, note)
+  return res.data
+}
+
+const update = async (id, newObject) => {
+  const res = await axios.put(`${baseUrl}/${id}`, newObject)
+  return res.data
+}
+
+export default { 
+  getAll,
+  create,
+  update
+}

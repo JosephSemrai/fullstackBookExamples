@@ -1,14 +1,39 @@
 {
-    "notes": [
-        {
-        "textContent": "This was served by json-server",
-        "flagged": false,
-        "id": 1
-        },
-        {
-        "textContent": "We're keeping track of all of these notes in the Redux Store",
-        "flagged": true,
-        "id": 2
-        }
-    ]
+  "notes": [
+    {
+      "textContent": "This was served by json-server",
+      "flagged": true,
+      "id": 1
+    },
+    {
+      "textContent": "We're keeping track of all of these notes in the Redux Store",
+      "flagged": false,
+      "id": 2
+    },
+    {
+      "textContent": "test",
+      "flagged": false,
+      "id": 3
+    },
+    {
+      "textContent": "tetwtwet",
+      "flagged": true,
+      "id": 4
+    },
+    {
+      "textContent": "gdfdfg",
+      "flagged": true,
+      "id": 5
+    },
+    {
+      "textContent": "dgsdgsd",
+      "flagged": true,
+      "id": 6
+    },
+    {
+      "textContent": "test",
+      "flagged": false,
+      "id": 7
+    }
+  ]
 }

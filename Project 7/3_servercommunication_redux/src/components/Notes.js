@@ -2,11 +2,21 @@ import React from 'react'
 import { toggleFlaggedOf } from '../reducers/noteReducer'
 import { connect } from 'react-redux'
 import Note from './Note'
+import noteService from '../services/noteService'
 
 const Notes = ({ 
   notes,
   toggleFlagged 
 }) => {
+
+  const toggleNoteFlagged = async note => {
+    const toggledNote = {
+      ...note,
+      flagged: !note.flagged
+    }
+    await noteService.update(note.id, toggledNote)
+    toggleFlagged(note.id)
+  }
 
   return (
     <ul>
@@ -14,7 +24,7 @@ const Notes = ({
         <Note
           key={note.id}
           note={note}
-          toggleFlagged={() => toggleFlagged(note.id)}
+          toggleFlagged={() => toggleNoteFlagged(note)}
         />
       )}
     </ul>

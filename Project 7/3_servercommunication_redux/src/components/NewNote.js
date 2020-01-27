@@ -1,14 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createNote } from '../reducers/noteReducer'
 
 const NewNote = ({ createNewNote }) => {
-  
   const addNote = (event) => {
     event.preventDefault()
     const textContent = event.target.noteField.value
-    createNewNote(textContent)
     event.target.noteField.value = ''
+    createNewNote(textContent)
   }
   
   return (
