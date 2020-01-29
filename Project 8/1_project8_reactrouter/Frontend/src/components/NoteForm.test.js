@@ -20,7 +20,7 @@ const Wrapper = (props) => {
 test('<NoteForm /> updates through handleInputChange and calls addNote', () => {
   const addNote = jest.fn()
   const state = {
-      noteField: ''
+    noteField: ''
   }
 
   const component = render(

@@ -14,7 +14,7 @@ describe('<App /> Integration Tests', () => {
     )
 
     const notes = component.container.querySelectorAll('.mainNote')
-    expect(notes.length).toBe(3) 
+    expect(notes.length).toBe(3)
 
     expect(component.container).toHaveTextContent(
       'This is a mock note!'
