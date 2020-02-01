@@ -3,8 +3,9 @@ import loginService from '../services/login'
 import noteService from '../services/notes'
 import Togglable from './Togglable'
 import LoginForm from './LoginForm'
+import { withRouter } from 'react-router-dom'
 
-const LoginContainer = ({ user, setUser, setNotificationMessage }) => {
+const LoginContainer = ({ history, user, setUser, setNotificationMessage }) => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -23,6 +24,7 @@ const LoginContainer = ({ user, setUser, setNotificationMessage }) => {
         'noteAppUser', JSON.stringify(user)
       )
       noteService.setToken(user.token)
+      history.push('/')
     } catch (exception) {
       console.log(exception)
       setNotificationMessage('Incorrect credentials: ' + exception)
@@ -64,4 +66,4 @@ const LoginContainer = ({ user, setUser, setNotificationMessage }) => {
     </div>
 }
 
-export default LoginContainer
+export default withRouter(LoginContainer)

@@ -6,14 +6,15 @@ const cors = require('cors')
 const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
 const logger = require('./utils/logger')
+const passport = require('passport')
 
 const notesRouter = require('./controllers/notes')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 
-logger.info('Connecting to:', config.MONGODB_URI)
+logger.info('Connecting to:', config.database)
 
-mongoose.connect(config.MONGODB_URI, {
+mongoose.connect(config.database, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -29,6 +30,7 @@ mongoose.connect(config.MONGODB_URI, {
 app.use(cors())
 app.use(express.static('build'))
 app.use(bodyParser.json())
+app.use(passport.initialize())
 app.use(middleware.logRequest)
 
 // Routers

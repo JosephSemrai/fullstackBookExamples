@@ -12,7 +12,7 @@ const NoteContainer = ({ notes, setNotes }) => {
 
     noteService
       .update(id, updatedNote)
-      .then(responseNote => {
+      .then(() => {
         setNotes(notes.map(note => note.id === id ? updatedNote : note))
       })
   }
@@ -20,25 +20,25 @@ const NoteContainer = ({ notes, setNotes }) => {
   const filteredNotes = showAll ? notes : notes.filter(note => note.flagged)
 
   const noteList = () => filteredNotes.map(note =>
-    <Note
+      <Note
       key={note.id}
       note={note}
       toggleFlagged={() => toggleFlagged(note.id)}
-    />
+      />
   )
 
   return (
-          <>
-            <div>
-              <button onClick={() => setShowAll(!showAll)}>
-                Show {showAll ? 'Flagged' : 'All' }
-              </button>
-            </div>
+    <>
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          Show {showAll ? 'Flagged' : 'All' }
+        </button>
+      </div>
 
-            <ul>
-              {noteList()}
-            </ul>
-          </>
+      <ul>
+        {noteList()}
+      </ul>
+    </>
   )
 }
 
