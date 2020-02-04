@@ -3,12 +3,6 @@ const passportJwt = require('passport-jwt')
 const config = require('../config')
 const User = require('../../models/user')
 
-// var cookieExtractor = function (req) {
-//   var token = req.get('Authorization')
-//   console.log(token)
-//   return token;
-// };
-
 const jwtOptions = {
   // Reads JWT from the HTTP Authorization header with the 'bearer' scheme
   jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
@@ -22,8 +16,7 @@ const jwtOptions = {
 
 
 passport.use(new passportJwt.Strategy(jwtOptions, async (payload, done) => {
-  // TODO: Perform checks to see if the token has not expired
-  console.log("HIT HERE")
+  // In production, you should check to see if the token has not expired here
   console.log(payload.sub)
   const user = await User.findById(payload.sub)
   console.log(user)

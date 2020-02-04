@@ -5,15 +5,15 @@ const Note = ({ note, toggleFlagged }) => {
   if (!note) {
     note = {
       flagged: false,
-      content: "Note content not found"
+      content: 'Note content not found'
     }
   }
   return (
     <li className="mainNote card">
       <input type="checkbox" alt="Toggle Flagged" checked={note.flagged} onChange={toggleFlagged} />
-        <Link to={`/notes/${note.id}`}>
-          {note.content}
-        </Link>
+      <Link to={`/notes/${note.id}`}>
+        {note.content}
+      </Link>
     </li>
   )
 }

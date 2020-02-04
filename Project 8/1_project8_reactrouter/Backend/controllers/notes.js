@@ -13,7 +13,7 @@ notesRouter.get('/', async (req, res) => {
 })
 
 notesRouter.post('/',
-  passport.authenticate(['jwt'], { session: false }),
+  passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
     const body = req.body
 

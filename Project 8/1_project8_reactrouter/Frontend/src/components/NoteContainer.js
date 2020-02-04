@@ -20,11 +20,11 @@ const NoteContainer = ({ notes, setNotes }) => {
   const filteredNotes = showAll ? notes : notes.filter(note => note.flagged)
 
   const noteList = () => filteredNotes.map(note =>
-      <Note
+    <Note
       key={note.id}
       note={note}
       toggleFlagged={() => toggleFlagged(note.id)}
-      />
+    />
   )
 
   return (

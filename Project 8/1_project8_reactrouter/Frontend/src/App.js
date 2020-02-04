@@ -30,10 +30,10 @@ const App = (props) => {
   const signedInEffect = () => {
     const loggedInUserJSON = window.localStorage.getItem('noteAppUser')
     if (loggedInUserJSON) {
-      const user = JSON.parse(loggedInUserJSON)
-      setUser(user)
-      noteService.setToken(user.token)
-      loginService.setToken(user.token)
+      const storageUser = JSON.parse(loggedInUserJSON)
+      setUser(storageUser)
+      noteService.setToken(storageUser.token)
+      loginService.setToken(storageUser.token)
     }
   }
 

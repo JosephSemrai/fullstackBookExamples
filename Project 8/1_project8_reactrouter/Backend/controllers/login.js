@@ -33,9 +33,9 @@ loginRouter.post('/', async (req, res) => {
 })
 
 loginRouter.get('/profile',
-  passport.authenticate(['jwt'], { session: false }),
+  passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const user = await User.findById(req.user.id)
+    const user = req.user
     const userForProfile = {
       username: user.username,
       id: user._id

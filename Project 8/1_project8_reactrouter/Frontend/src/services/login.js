@@ -16,7 +16,7 @@ const profile = async () => {
   const config = {
     headers: { Authorization: token },
   }
-  console.log("Getting profile with token " + token)
+  console.log('Getting profile with token ' + token)
 
   const res = await axios.get(`${baseUrl}/profile`, config)
   return res.data
