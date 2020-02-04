@@ -30,6 +30,4 @@ usersRouter.get('/', async (req, res) => {
   res.json(users.map(u => u.toJSON()))
 })
 
-
-
 module.exports = usersRouter

@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import loginService from '../services/login'
 import noteService from '../services/notes'
 import Togglable from './Togglable'
 import LoginForm from './LoginForm'
 import { withRouter } from 'react-router-dom'
+import authenticatedState from '../helpers/authenticatedState'
+
+const authenticateWithProvider = (provider) => {
+  window.open('http://localhost:3000/api/authentication/' + provider + '/start')
+}
+
 
 const LoginContainer = ({ history, user, setUser, setNotificationMessage }) => {
 
@@ -14,7 +20,7 @@ const LoginContainer = ({ history, user, setUser, setNotificationMessage }) => {
     event.preventDefault()
     try {
       const user = await loginService.login({
-        username, password,
+        username, password
       })
 
       setUser(user)
@@ -47,17 +53,31 @@ const LoginContainer = ({ history, user, setUser, setNotificationMessage }) => {
 
   const loginForm = () => {
     return (
-      <Togglable buttonLabel='Login'>
-        <LoginForm
-          handleLogin={handleLogin}
-          handleUsernameChange={({ target }) => setUsername(target.value)}
-          handlePasswordChange={({ target }) => setPassword(target.value)}
-          username={username}
-          password={password}
-        />
-      </Togglable>
+      <>
+        <Togglable buttonLabel='Sign Up With Email'>
+          <LoginForm
+            handleLogin={handleLogin}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            username={username}
+            password={password}
+          />
+        </Togglable>
+        <button onClick={() => authenticateWithProvider('google')}>Sign In with Google</button>
+        <button onClick={() => tokenEffect()}>Test</button>
+      </>
     )
   }
+
+  const tokenEffect = () => {
+    const params = (new URL(document.location)).searchParams;
+    const token = params.get('token')
+    if (token) {
+      setUser(authenticatedState(token))
+    }
+  }
+
+  useEffect(tokenEffect, [])
 
   return user === null ?
     loginForm() :

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Notification from './components/Notification'
 import Separator from './components/Separator'
 import noteService from './services/notes'
+import loginService from './services/login'
 import LoginContainer from './components/LoginContainer'
 import NoteFormContainer from './components/NoteFormContainer'
 import Note from './components/Note'
@@ -32,6 +33,7 @@ const App = (props) => {
       const user = JSON.parse(loggedInUserJSON)
       setUser(user)
       noteService.setToken(user.token)
+      loginService.setToken(user.token)
     }
   }
 

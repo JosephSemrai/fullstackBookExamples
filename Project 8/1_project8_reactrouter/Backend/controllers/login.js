@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const loginRouter = require('express').Router()
+const passport = require('passport')
+require('../utils/authentication/jwt')
 
 const User = require('../models/user')
 
@@ -29,5 +31,17 @@ loginRouter.post('/', async (req, res) => {
     .status(200)
     .send({ token, username: user.username, name: user.name })
 })
+
+loginRouter.get('/profile',
+  passport.authenticate(['jwt'], { session: false }),
+  async (req, res) => {
+    const user = await User.findById(req.user.id)
+    const userForProfile = {
+      username: user.username,
+      id: user._id
+    }
+    res.json(userForProfile)
+  }
+)
 
 module.exports = loginRouter

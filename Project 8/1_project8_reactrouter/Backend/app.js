@@ -11,6 +11,7 @@ const passport = require('passport')
 const notesRouter = require('./controllers/notes')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+const authRouter = require('./controllers/auth')
 
 logger.info('Connecting to:', config.database)
 
@@ -34,6 +35,7 @@ app.use(passport.initialize())
 app.use(middleware.logRequest)
 
 // Routers
+app.use('/api/authentication', authRouter)
 app.use('/api/notes', notesRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)

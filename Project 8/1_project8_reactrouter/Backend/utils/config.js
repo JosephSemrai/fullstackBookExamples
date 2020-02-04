@@ -39,20 +39,20 @@ const config = convict({
         env: 'FACEBOOK_CLIENTSECRET'
       }
     },
-  },
-  token: {
-    secret: {
-      doc: 'Secret key for JWT (signer)',
-      default: 'jDGWbgiUDHGIWOGE&G8DUGVHUI',
-      env: 'SECRET'
-    },
-    issuer: {
-      doc: 'JWT Issuer',
-      default: 'Test App'
-    },
-    audience: {
-      doc: 'JWT Audience',
-      default: 'Test App'
+    token: {
+      secret: {
+        doc: 'Secret key for JWT (signer)',
+        default: 'jDGWbgiUDHGIWOGE&G8DUGVHUI',
+        env: 'SECRET'
+      },
+      issuer: {
+        doc: 'JWT Issuer',
+        default: 'Test App'
+      },
+      audience: {
+        doc: 'JWT Audience',
+        default: 'Test App'
+      }
     }
   }
 })
