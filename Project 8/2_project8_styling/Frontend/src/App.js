@@ -13,17 +13,16 @@ import {
 import { Checkbox, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-  checkboxRoot: {
+  checked: {
     color: theme.status.danger,
     '&$checked': {
       color: theme.status.danger,
     },
-  },
-  checked: {},
+  }
 }));
 
 const App = (props) => {
-  const classes = useStyles()
+  const classes = useStyles(props)
   const [notes, setNotes] = useState([])
   const [notificationMessage, setNotificationMessage] = useState()
   const [user, setUser] = useState(null)
@@ -59,10 +58,7 @@ const App = (props) => {
   return (
     <div>
       <Checkbox
-        classes={{
-          root: classes.checkboxRoot,
-          checked: classes.checked
-        }}
+        className={classes.checked}
       />
       <h1>Notes</h1>
         <Router>
