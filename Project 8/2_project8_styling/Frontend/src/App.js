@@ -10,7 +10,7 @@ import NoteContainer from './components/NoteContainer'
 import {
   BrowserRouter as Router, Route, Link, Redirect
 } from 'react-router-dom'
-import { Checkbox, makeStyles } from '@material-ui/core'
+import { Checkbox, makeStyles, Container, Tabs, Tab } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   checked: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
       color: theme.status.danger,
     },
   }
-}));
+}))
 
 const App = (props) => {
   const classes = useStyles(props)
@@ -53,36 +53,36 @@ const App = (props) => {
 
   const getNoteById = (id) => notes.find(note => note.id === id)
 
-  const linkStyle = { padding: 10 }
-
   return (
-    <div>
+    <Container maxWidth="md">
       <Checkbox
         className={classes.checked}
       />
       <h1>Notes</h1>
-        <Router>
+      <Router>
+        <div>
           <div>
-            <div>
-              <Link style={linkStyle} to="/">Home</Link>
-              <Link style={linkStyle} to="/notes">Notes</Link>
-              <Link style={linkStyle} to="/login">Login</Link>
-              {user === null ?
-                null :
-                <Link style={linkStyle} to="/create">Create</Link>}
-            </div>
-            <Notification message={notificationMessage} />
-            <div>
-              <Route exact path="/" render={() => <h2>Home</h2>} />
-              <Route path="/login" render={() => <LoginContainer user={user} setUser={setUser} setNotificationMessage={setNotificationMessage} />} />
-              <Route exact path="/notes" render={() => <NoteContainer notes={notes} setNotes={setNotes} />}/>
-              <Route path="/notes/:id" render={({ match }) => <Note note={getNoteById(match.params.id)} />}/>
-              <Route path="/create" render={() => user ? <NoteFormContainer notes={notes} setNotes={setNotes} /> : <Redirect to="/login" />}/>
-            </div>
+          <Tabs aria-label="simple tabs example">
+            <Tab label="Home" component={Link} to="/home" />
+            <Tab label="Notes" component={Link} to="/notes" />
+            <Tab label="Login" component={Link} to="/login" />
+            {user === null ?
+              null :
+              <Tab label="Create" component={Link} to="/create" />}
+          </Tabs>
           </div>
-        </Router>
+          <Notification message={notificationMessage} />
+          <div>
+            <Route exact path="/" render={() => <h2>Home</h2>} />
+            <Route path="/login" render={() => <LoginContainer user={user} setUser={setUser} setNotificationMessage={setNotificationMessage} />} />
+            <Route exact path="/notes" render={() => <NoteContainer notes={notes} setNotes={setNotes} />}/>
+            <Route path="/notes/:id" render={({ match }) => <Note note={getNoteById(match.params.id)} />}/>
+            <Route path="/create" render={() => user ? <NoteFormContainer notes={notes} setNotes={setNotes} /> : <Redirect to="/login" />}/>
+          </div>
+        </div>
+      </Router>
       <Separator />
-    </div>
+    </Container>
   )
 }
 

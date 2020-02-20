@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'proptypes'
+import { Input, Button, Typography } from '@material-ui/core'
 
 const LoginForm = ({
   loginAddress,
@@ -12,8 +13,10 @@ const LoginForm = ({
   return (
     <form action={loginAddress} method={'post'}>
       <div>
-            Username
-        <input
+        <Typography>
+          Username
+        </Typography>  
+        <Input
           type="text"
           value={username}
           name="Username"
@@ -21,15 +24,23 @@ const LoginForm = ({
         />
       </div>
       <div>
-            Password
-        <input
+        <Typography>
+          Password
+        </Typography> 
+        <Input
           type="password"
           value={password}
           name="Password"
           onChange={handlePasswordChange}
         />
       </div>
-      <button type="submit">Login</button>
+      <Button 
+        variant="contained"
+        type="submit"
+        color="primary"
+      >
+        Login
+      </Button>
     </form>
   )
 }

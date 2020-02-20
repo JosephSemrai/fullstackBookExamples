@@ -5,7 +5,7 @@ const baseTheme = {
   status: {
     danger: orange[500],
   }
-};
+}
 
 const theme = createMuiTheme(baseTheme)
 
