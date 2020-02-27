@@ -19,10 +19,27 @@ const Notes = () => {
     return unsubscribe
   }, [])
 
+  const onToggle = note => {
+    const noteRef = firebase.firestore().collection("notes").doc(note.id)
+
+    noteRef.update({
+      flagged: !note.flagged
+    })
+    .then(() => {
+      console.log("Document successfully updated!")
+    })
+    .catch(error => {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error)
+    })
+  }
+
   return (
     <>
       {notes.map(note => (
-        <li key={note.id}>{note.content}</li> 
+        <div key={note.id}>
+          <input type="checkbox" onChange={() => onToggle(note)} checked={note.flagged} /> {note.content}
+        </div>
       ))}
     </>
   )
