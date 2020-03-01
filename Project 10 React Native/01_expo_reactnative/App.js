@@ -1,11 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
+import firebase from './services/firebaseService'
+import { UserContext } from './context'
 
 
 const Stack = createStackNavigator()
@@ -45,21 +47,34 @@ const NotesNavigator = () => (
 const App = () => {
   const [user, setUser] = useState() // Set to a blank object to simulate a user being signed in
 
+  useEffect(() => {
+    const unsubscribe = firebase
+      .auth()
+      .onAuthStateChanged(
+        user => setUser(user)
+      )
+
+    return () => unsubscribe()
+  }
+  , [])
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode='none'>
-        {!user ? (
-          <>
-            <Stack.Screen name="Auth" component={AuthNavigator} />
-          </>
-        ) : (
-          <>
-            {/* User is signed in */}
-            <Stack.Screen name="Notes" component={NotesNavigator} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <UserContext.Provider value={{ user, setUser }}>
+      <NavigationContainer>
+        <Stack.Navigator screenProps headerMode='none'>
+          {!user ? (
+            <>
+              <Stack.Screen name="Auth" component={AuthNavigator} />
+            </>
+          ) : (
+            <>
+              {/* User is signed in */}
+              <Stack.Screen name="Notes" component={NotesNavigator} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserContext.Provider>
   )
 }
 

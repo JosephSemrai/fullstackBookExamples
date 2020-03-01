@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import firebase from '../services/firebaseService'
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState()
@@ -49,7 +49,7 @@ const LoginScreen = () => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.registerView}>
+      <TouchableOpacity style={styles.registerView} onPress={() => navigation.navigate('Register')}>
         <Text>Don&apos;t have an account? <Text style={{ fontWeight: 'bold', color: '#2ecc71' }}>Sign Up</Text> </Text>
       </TouchableOpacity>
 

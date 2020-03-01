@@ -1,11 +1,23 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { UserContext } from '../context'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
-    </View>
+    <UserContext.Consumer>
+      {
+        ({ user, setUser }) =>
+          <View style={styles.container}>
+            <Text>Welcome {user.displayName}</Text>
+            <TouchableOpacity onPress={() => setUser('test')}>
+              <Text>
+                Reset User
+              </Text>
+            </TouchableOpacity>
+          </View>
+      }
+    </UserContext.Consumer>
   )
 }
 
