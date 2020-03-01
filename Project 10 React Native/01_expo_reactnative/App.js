@@ -6,8 +6,15 @@ import { Ionicons } from '@expo/vector-icons'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
+import NewNoteScreen from './screens/NewNoteScreen'
 import firebase from './services/firebaseService'
 import { UserContext } from './context'
+
+import {decode, encode} from 'base-64'
+
+if (!global.btoa) {  global.btoa = encode }
+
+if (!global.atob) { global.atob = decode }
 
 
 const Stack = createStackNavigator()
@@ -31,6 +38,10 @@ const NotesNavigator = () => (
           iconName = focused
             ? 'ios-information-circle'
             : 'ios-information-circle-outline'
+        } else if (route.name === 'New Note') {
+          iconName = focused
+            ? 'ios-add-circle'
+            : 'ios-add'
         }
         return <Ionicons name={iconName} size={size} color={color} />
       },
@@ -41,6 +52,7 @@ const NotesNavigator = () => (
     }}
   >
     <Tab.Screen name="Home" component={HomeScreen}/>
+    <Tab.Screen name="New Note" component={NewNoteScreen}/>
   </Tab.Navigator>
 )
 

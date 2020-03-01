@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 require('firebase/auth')
+require('firebase/firestore')
 
 // Firebase configuration provided to us by the app creation process
 const firebaseConfig = {
